@@ -1,7 +1,5 @@
 # Valentine
 
-# Valentine
-
 Propuesta interactiva de San Valentín optimizada para GitHub Pages.  
 El proyecto se organiza en una estructura de archivos separados para facilitar el mantenimiento y la escalabilidad del diseño y la lógica.
 
