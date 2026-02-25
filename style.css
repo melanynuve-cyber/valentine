@@ -1,0 +1,225 @@
+/* IMPORTAR FUENTE RETRO GAMING */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* VARIABLES Y RESET */
+:root {
+    --box-bg: rgba(139, 90, 125, 0.75);
+    --box-border: #d4a5d4;
+    --text-color: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Press Start 2P', monospace;
+    overflow: hidden; 
+    min-height: 100vh;
+    position: relative;
+    image-rendering: pixelated;
+    color: var(--text-color);
+}
+
+/*  FONDOS DEGRADADOS POR PÁGINA */
+body {
+    background: linear-gradient(135deg, #ffd3e1 0%, #ffe6f0 50%, #ffc4d6 100%);
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text y="28" font-size="28">💘</text></svg>') 16 16, auto;
+}
+
+body:has([title*="San Valentín"]) {
+    background: linear-gradient(135deg, #ffc9e0 0%, #ffd9ed 50%, #ffe0f0 100%);
+}
+
+body:has([title*="Gracias"]) {
+    background: linear-gradient(135deg, #ffe0f0 0%, #fff0f8 50%, #ffe6f2 100%);
+}
+
+/* CORAZONES FLOTANTES PIXEL ART */
+@keyframes floatHeart {
+    0% { transform: translateY(0) translateX(0) rotate(0deg) scale(1); opacity: 0; }
+    10% { opacity: 0.8; }
+    50% { transform: translateY(50vh) translateX(30px) rotate(180deg) scale(1.2); }
+    90% { opacity: 0.4; }
+    100% { transform: translateY(110vh) translateX(-20px) rotate(360deg) scale(0.8); opacity: 0; }
+}
+
+body::before, body::after {
+    font-family: Arial, sans-serif;
+    position: fixed;
+    font-size: 30px;
+    color: rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+    z-index: 1;
+}
+
+body::before { content: '♥'; top: -50px; left: 15%; animation: floatHeart 10s infinite ease-in-out; }
+body::after { content: '♥'; top: -50px; left: 75%; animation: floatHeart 12s infinite ease-in-out 2s; }
+
+/* LAYOUT CENTRADO*/
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* CAJA CONTAINER  */
+.container {
+    background: var(--box-bg);
+    border: 4px solid var(--box-border);
+    border-radius: 0;
+    padding: 50px 40px;
+    max-width: 800px;
+    width: 90%;
+    position: relative;
+    z-index: 10;
+    box-shadow: 
+        0 0 0 4px rgba(139, 90, 125, 0.5),
+        8px 8px 0 0 rgba(212, 165, 212, 0.6),
+        12px 12px 0 0 rgba(139, 90, 125, 0.4);
+    animation: fadeInBox 0.8s ease-out;
+    overflow: visible; 
+}
+
+/* Efecto de esquinas pixel art */
+.container::before, .container::after {
+    content: ''; position: absolute; width: 20px; height: 20px; border: 4px solid var(--box-border);
+}
+.container::before { top: -4px; left: -4px; border-right: none; border-bottom: none; }
+.container::after { bottom: -4px; right: -4px; border-left: none; border-top: none; }
+
+@keyframes fadeInBox {
+    from { opacity: 0; transform: scale(0.8) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* TIPOGRAFÍA*/
+h1 {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    line-height: 1.6;
+    margin-bottom: 30px;
+    text-align: center;
+    text-shadow: 2px 2px 0 rgba(139, 90, 125, 0.8);
+    animation: glowText 2s ease-in-out infinite alternate;
+}
+
+@keyframes glowText {
+    from { text-shadow: 2px 2px 0 rgba(139, 90, 125, 0.8), 0 0 10px rgba(212, 165, 212, 0.5); }
+    to { text-shadow: 2px 2px 0 rgba(139, 90, 125, 0.8), 0 0 20px rgba(212, 165, 212, 0.9); }
+}
+
+h1.big {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    animation: scaleIn 1s ease-out, glowText 2s ease-in-out infinite alternate 1s;
+    /* CAMBIO: Esto evita que el texto se salga de lado en el celular */
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+p {
+    font-size: clamp(0.7rem, 2vw, 1rem);
+    line-height: 1.8;
+    text-align: center;
+    opacity: 0.95;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.85; }
+    50% { opacity: 1; }
+}
+
+/* BOTONES*/
+.buttons {
+    display: flex; justify-content: center; align-items: center;
+    gap: 30px; margin-top: 40px; position: relative;
+}
+
+.buttons a { text-decoration: none; flex: 1; min-width: 150px; display: inline-block; width: auto; max-width: 200px; }
+
+button {
+    font-family: 'Press Start 2P', monospace;
+    font-size: clamp(0.7rem, 2vw, 1rem);
+    padding: 20px 30px;
+    border: 4px solid var(--box-border);
+    background: rgba(212, 165, 212, 0.3);
+    color: var(--text-color);
+    cursor: pointer;
+    width: 100%; position: relative; transition: all 0.1s;
+    box-shadow: 0 0 0 4px rgba(139, 90, 125, 0.4), 6px 6px 0 0 rgba(212, 165, 212, 0.5);
+}
+
+button:active { transform: translate(3px, 3px); box-shadow: 0 0 0 4px rgba(139, 90, 125, 0.4), 3px 3px 0 0 rgba(212, 165, 212, 0.5); }
+
+.yes {
+    background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+    border-color: #00ff88; width: 180px;
+    animation: buttonGlowYes 1.5s ease-in-out infinite alternate;
+}
+
+.yes:hover {
+    background: linear-gradient(135deg, #00ff88 0%, #00ffcc 100%);
+    transform: scale(1.05);
+}
+
+@keyframes buttonGlowYes {
+    from { box-shadow: 0 0 0 4px rgba(139, 90, 125, 0.4), 6px 6px 0 0 rgba(212, 165, 212, 0.5), 0 0 10px rgba(0, 255, 136, 0.3); }
+    to { box-shadow: 0 0 0 4px rgba(139, 90, 125, 0.4), 6px 6px 0 0 rgba(212, 165, 212, 0.5), 0 0 25px rgba(0, 255, 136, 0.6); }
+}
+
+.no {
+    background: linear-gradient(135deg, #d63031 0%, #e17055 100%);
+    border-color: #ff6b6b; width: 180px;
+}
+.no:hover { cursor: pointer; }
+
+/* EFECTOS ESPECIALES PARA PÁGINA ACCEPTED */
+body:has([title*="Gracias"]) .container {
+    /* CAMBIO: Solo 'celebration', borré 'shake' para que no vibre */
+    animation: celebration 1s ease-out forwards;
+}
+
+@keyframes celebration {
+    0% { transform: scale(0) rotate(-10deg); opacity: 0; }
+    70% { transform: scale(1.1) rotate(5deg); }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* ESTELA DEL CURSOR */
+.cursor-trail {
+    position: fixed; width: 10px; height: 10px; border-radius: 50%;
+    background: radial-gradient(circle, #ffb3d9 0%, #ffc9e0 50%, transparent 70%);
+    pointer-events: none; z-index: 9999; opacity: 0.8;
+    animation: cursorFade 0.8s ease-out forwards;
+}
+
+@keyframes cursorFade {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(2); opacity: 0; }
+}
+
+/* PANTALLAS (SISTEMA DE NAVEGACIÓN) */
+.screen {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+    align-items: center; justify-content: center; flex-direction: column; z-index: 10;
+    background: transparent;
+}
+.screen.active { display: flex; animation: fadeIn 0.5s ease-in-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/*RESPONSIVE */
+@media (max-width: 768px) {
+    .container { padding: 30px 20px; }
+    h1 { font-size: clamp(1rem, 4vw, 1.5rem); }
+    .buttons { flex-direction: column; }
+    button { width: 100%; }
+}
